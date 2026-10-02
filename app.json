@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Contentgen",
+    "slug": "contentgen",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "contentgen",
+    "userInterfaceStyle": "dark",
+    "plugins": [
+      "expo-router"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0B0B0F"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
