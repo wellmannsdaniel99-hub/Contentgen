@@ -1,0 +1,1 @@
+import {publishDue} from './publisher.js';let running=false;export function startScheduler(){const tick=async()=>{if(running)return;running=true;try{await publishDue()}finally{running=false}};setInterval(tick,60_000);void tick()}
