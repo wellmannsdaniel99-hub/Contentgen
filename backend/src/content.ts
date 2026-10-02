@@ -1,0 +1,2 @@
+import { complianceCheck } from './compliance.js';
+export function makeDraft(topic:string){const draft={title:topic,hook:`What if this existed tomorrow? ${topic}`,caption:`${topic} — a speculative future-invention concept.`,hashtags:['futuretech','innovation','inventions','technology'],visualPrompt:`Create an original vertical 9:16 visualization of: ${topic}. Do not imitate living artists, brands, copyrighted characters, logos, or real people. Make the concept clearly fictional/speculative.`,aiGenerated:true};return {...draft,compliance:complianceCheck(draft)}}
