@@ -1,13 +1,11 @@
-# Contentgen backend boundary
+# Contentgen Autopilot backend
 
-The mobile app must not hold social-platform or AI-provider secrets. Production Autopilot should run server-side.
+This folder now contains a runnable Express/TypeScript backend. The mobile app can use it via `EXPO_PUBLIC_CONTENTGEN_API_URL`.
 
-Pipeline:
-1. Fetch permitted trend signals from configured providers.
-2. Normalize and rank by momentum, freshness, niche fit and originality.
-3. Generate hook, script/caption, hashtags and visual brief.
-4. Run safety/quality/duplicate checks.
-5. Store media + draft in queue.
-6. Review or auto-publish at schedule time.
+## Run
+Copy `.env.example` to `.env`, then install dependencies and run `npm run dev` inside `backend/`.
 
-The current `services/trends.ts` uses local seed signals so the app can be built without pretending live trend data is already connected. Replace that adapter with backend API calls when provider credentials and deployment are configured.
+## Trend providers
+The backend intentionally uses an adapter (`TREND_PROVIDER_URL` + server-only token) rather than scraping social platforms from the mobile client. Until a permitted provider is configured, it returns clearly separated fallback/evergreen/AI signals. Provider secrets never belong in Expo.
+
+Endpoints: `GET /health`, `GET /v1/discover`, `POST /v1/autopilot/run`.
