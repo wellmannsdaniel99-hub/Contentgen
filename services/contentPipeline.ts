@@ -1,0 +1,3 @@
+import type { RankedIdea } from '../lib/autopilot';
+export type ContentDraft={title:string;hook:string;caption:string;hashtags:string[];visualPrompt:string;status:'review'};
+export async function buildDraft(idea:RankedIdea):Promise<ContentDraft>{return {title:idea.topic,hook:`What if ${idea.topic.toLowerCase()}?`,caption:`${idea.topic}. A future-invention concept selected by Contentgen's autopilot.`,hashtags:['future','inventions','technology','innovation','ai'],visualPrompt:`Vertical cinematic social video concept: ${idea.topic}. Futuristic, believable, premium product visualization.`,status:'review'}}
