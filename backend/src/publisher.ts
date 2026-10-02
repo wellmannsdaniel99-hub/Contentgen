@@ -1,0 +1,2 @@
+import {duePosts,setStatus} from './queue.js';export async function publishDue(){const due=await duePosts();for(const item of due){await setStatus(item.id,'publishing');try{// Platform adapters will replace this guard after official OAuth is configured.
+if(!process.env.PUBLISHING_ENABLED)throw new Error('Publishing not configured');await setStatus(item.id,'published')}catch{await setStatus(item.id,'failed')}}return due.length}
