@@ -1,3 +1,3 @@
-export type MediaJob={kind:'image'|'video';prompt:string;aspectRatio:'9:16';aiLabel:true};
-export function createMediaJob(visualPrompt:string,kind:'image'|'video'='video'):MediaJob{return {kind,prompt:visualPrompt,aspectRatio:'9:16',aiLabel:true}}
-// Provider execution stays server-side. A later adapter can submit this job only to a provider whose commercial terms fit Contentgen.
+export type MediaJob={kind:'image'|'video';prompt:string;aspectRatio:'9:16';aiLabel:true};export type MediaAsset={status:'ready'|'queued';kind:'image'|'video';url?:string;provider:'configured'|'pending';aiLabel:true};
+export function createMediaJob(prompt:string,kind:'image'|'video'='video'):MediaJob{return {kind,prompt,aspectRatio:'9:16',aiLabel:true}}
+export async function generateMedia(job:MediaJob):Promise<MediaAsset>{const url=process.env.MEDIA_API_URL,key=process.env.MEDIA_API_KEY;if(!url||!key)return {status:'queued',kind:job.kind,provider:'pending',aiLabel:true};const r=await fetch(url,{method:'POST',headers:{Authorization:`Bearer ${key}`,'Content-Type':'application/json'},body:JSON.stringify(job)});if(!r.ok)throw new Error(`Media provider failed: ${r.status}`);const x=await r.json() as {url?:string};return {status:x.url?'ready':'queued',kind:job.kind,url:x.url,provider:'configured',aiLabel:true}}
