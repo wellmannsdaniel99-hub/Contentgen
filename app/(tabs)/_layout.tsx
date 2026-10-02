@@ -1,0 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+const tabs:any={index:'home',create:'sparkles',calendar:'calendar',library:'albums',settings:'settings'};
+export default function TabLayout(){return <Tabs screenOptions={({route})=>({headerShown:false,tabBarStyle:{backgroundColor:'#0D0E10',borderTopColor:'#23252A',height:72,paddingTop:8},tabBarActiveTintColor:'#7CFF6B',tabBarInactiveTintColor:'#777',tabBarIcon:({color,size})=><Ionicons name={tabs[route.name]} color={color} size={size}/>})}><Tabs.Screen name="index" options={{title:'Home'}}/><Tabs.Screen name="create" options={{title:'Create'}}/><Tabs.Screen name="calendar" options={{title:'Calendar'}}/><Tabs.Screen name="library" options={{title:'Library'}}/><Tabs.Screen name="settings" options={{title:'Settings'}}/></Tabs>}
